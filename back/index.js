@@ -1,19 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const config = require('config');
+const authRoutes = require('./routes/authRoutes.js');
 
-const PORT = 5000;
-const PASS = 'cloudDrive';
-const DB = `mongodb+srv://cloudDrive:${PASS}@cluster0.jypji.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const PORT = config.get('serverPort');
+const DB = `mongodb+srv://cloudDrive:${config.get("password")}@cluster0.jypji.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const app = express();
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
+app.use('/api/auth', authRoutes);
 
-const startApp = () => {
+const startApp = async () => {
   try {
-    mongoose.connect(DB, { useNewUrlParser: true }, () => {
+    await mongoose.connect(DB, { useNewUrlParser: true }, () => {
       console.log('Connected to DB');
     });
     app.listen(PORT, () => {
