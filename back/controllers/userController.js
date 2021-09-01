@@ -2,6 +2,9 @@ const { validationResult } = require('express-validator');
 const userModel = require('../models/userModel.js');
 const UserService = require('../services/userService.js');
 const AuthService = require('../services/authService.js');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
 class UserController {
   async create(req, res) {
@@ -21,6 +24,39 @@ class UserController {
     } catch (e) {
       return res.status(500).json(e.message);
     }
+  }
+
+  async login(req, res) {
+    try {
+      const { email, password } = req.body;
+      const user = await UserService.findUserBy({ email });
+
+      if (!user) return res.status(404).json({ message: 'User not found' });
+
+      const isValidPassword = bcrypt.compareSync(password, user.password);
+      if (!isValidPassword) return res.status(404).json({ message: 'Invalid password' });
+
+      const token = this.generateToken(user.id);
+
+      const {id, email: userEmail, diskSpace, usedSpace, avatar} = user;
+
+      return res.status(200).send({
+        message: "You are logged in!",
+        token,
+        id,
+        email: userEmail,
+        diskSpace,
+        usedSpace,
+        avatar,
+      });
+
+    } catch (e) {
+      return res.status(500).json(e.message);
+    }
+  }
+
+  generateToken(userId) {
+    return jwt.sign({id: userId}, config.get('secret'), {expiresIn: '1h'});
   }
 }
 

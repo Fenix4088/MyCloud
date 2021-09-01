@@ -8,6 +8,10 @@ class UserService {
     const newUser = await userModel.create({ email, password: hashPassword });
     await newUser.save();
   }
+
+  async findUserBy(payload) {
+    return userModel.findOne(payload)
+  }
 }
 
 module.exports = new UserService();
