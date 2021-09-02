@@ -1,9 +1,19 @@
-import './App.css';
+import './App.scss';
+import { Navbar } from './components/Navbar/Navbar';
+import {Route, Switch} from "react-router-dom";
+import {Login} from "./components/Login/Login";
+import {Registration} from "./components/Registration/Registration";
 
 function App() {
-  return <div className='App'>
-    <h1>Hello</h1>
-  </div>;
+  return (
+    <div className='app'>
+      <Navbar />
+    <Switch>
+        <Route path={'/login'} component={() => <Login/>}/>
+        <Route path={'/registration'} component={() => <Registration/>}/>
+    </Switch>
+    </div>
+  );
 }
 
 export default App;
