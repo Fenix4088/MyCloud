@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import s from './Login.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ModalForm } from '../ModalForm/ModalForm';
 import { authorization } from '../../redux/reducers/userReducer/userReducer';
-import {Redirect} from "react-router-dom";
-import {withRedirect} from "../../hoc/withRedirect";
+import { withRedirect } from '../../hoc/withRedirect';
 
- const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
 
   const [{ email, password }, setInputValues] = useState({
