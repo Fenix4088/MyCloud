@@ -58,6 +58,36 @@ class UserController {
     }
   }
 
+  async checkIsAuth(req, res) {
+    try {
+      const {id} = req.user;
+      const user = await UserService.findUserBy({id});
+
+      if(!user) return res.status(404).json({message: 'User not found'});
+
+      const token = this.generateToken(user.id);
+
+      const {email: userEmail, diskSpace, usedSpace, avatar} = user;
+
+      return res.status(200).send({
+        message: "You are authorized!",
+        token,
+        user: {
+          id,
+          email: userEmail,
+          diskSpace,
+          usedSpace,
+          avatar
+        }
+
+      });
+
+
+    } catch(e) {
+      return res.status(500).json(e);
+    }
+  }
+
   generateToken(userId) {
     return jwt.sign({id: userId}, config.get('secret'), {expiresIn: '1h'});
   }
