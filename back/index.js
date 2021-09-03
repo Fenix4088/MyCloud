@@ -2,11 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
 const authRoutes = require('./routes/authRoutes.js');
+const cors = require('cors');
 
 const PORT = config.get('serverPort');
 const DB = `mongodb+srv://cloudDrive:${config.get("password")}@cluster0.jypji.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
