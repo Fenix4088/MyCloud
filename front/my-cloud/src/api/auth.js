@@ -6,5 +6,11 @@ export const authAPI = {
             email,
             password
         });
+    },
+    authorization: (email, password) => {
+        return $instance.post('auth/login', {
+            email,
+            password
+        });
     }
 }

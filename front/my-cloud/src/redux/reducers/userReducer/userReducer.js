@@ -21,3 +21,12 @@ export const registration = (email, password) => async () => {
         console.error(e)
     }
 }
+
+export const authorization = (email, password) => async () => {
+    try {
+        const response = await authAPI.authorization(email, password);
+        console.log(response.data);
+    } catch(e) {
+        console.error(e)
+    }
+}
