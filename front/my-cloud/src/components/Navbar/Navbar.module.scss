@@ -27,7 +27,13 @@
   cursor: pointer;
 }
 
-.header, .login, .registration {
+.logout {
+  margin-left: 10px;
+  border: none;
+  background: none;
+}
+
+.header, .login, .registration, .logout {
   font-weight: bold;
   font-size: 20px;
   color: $mainTextColor;

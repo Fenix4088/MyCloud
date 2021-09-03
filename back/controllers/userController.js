@@ -43,11 +43,14 @@ class UserController {
       return res.status(200).send({
         message: "You are logged in!",
         token,
-        id,
-        email: userEmail,
-        diskSpace,
-        usedSpace,
-        avatar,
+        user: {
+          id,
+          email: userEmail,
+          diskSpace,
+          usedSpace,
+          avatar
+        }
+
       });
 
     } catch (e) {

@@ -7,7 +7,7 @@ export const ModalForm = ({ title = 'Form title', inputs, wrapperStyles, formSty
       <form className={formStyles} onSubmit={formSubmitHandler}>
         <h2>{title}</h2>
         {inputs.map(({ type, name, value }) => {
-          return <Input value={value} type={type} name={name} placeholder={`Enter your ${name}...`} onChange={inputChangeHandler} />;
+          return <Input key={name} value={value} type={type} name={name} placeholder={`Enter your ${name}...`} onChange={inputChangeHandler} />;
         })}
         <button type={'submit'}>Submit</button>
       </form>
