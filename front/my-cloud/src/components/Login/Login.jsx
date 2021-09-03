@@ -8,7 +8,6 @@ import {withRedirect} from "../../hoc/withRedirect";
 
  const Login = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.userReducer.isAuth);
 
   const [{ email, password }, setInputValues] = useState({
     email: '',
@@ -44,10 +43,6 @@ import {withRedirect} from "../../hoc/withRedirect";
     await dispatch(authorization(email, password));
     setInputValues((state) => ({ email: '', password: '' }));
   };
-
-  if(isAuth) {
-    return <Redirect to={'/'}/>
-  }
 
   return (
     <>
