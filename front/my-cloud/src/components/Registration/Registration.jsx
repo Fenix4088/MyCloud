@@ -3,8 +3,9 @@ import s from './Registration.module.scss';
 import { useDispatch } from 'react-redux';
 import { registration } from '../../redux/reducers/userReducer/userReducer';
 import { ModalForm } from '../ModalForm/ModalForm';
+import {withRedirect} from "../../hoc/withRedirect";
 
-export const Registration = () => {
+const Registration = () => {
   const dispatch = useDispatch();
 
   const [{ email, password }, setInputValues] = useState({
@@ -55,5 +56,8 @@ export const Registration = () => {
     </>
   );
 };
+
+export default withRedirect(Registration, true, '/');
+
 
 

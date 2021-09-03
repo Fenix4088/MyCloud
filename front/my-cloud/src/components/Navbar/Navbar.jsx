@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Navbar.module.scss';
 import logo from '../../assets/img/logo.png';
 import { NavLink } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/reducers/userReducer/userReducer';
 
 export const Navbar = () => {
@@ -17,8 +17,10 @@ export const Navbar = () => {
     <div className={s['navbar']}>
       <div className={s['container']}>
         <div className={s['column']}>
-          <img src={logo} alt='Logo' className={s['logo']} />
-          <div className={s['header']}>MERN CLOUD</div>
+          <NavLink to={'/'} className={s['login']}>
+            <img src={logo} alt='Logo' className={s['logo']} />
+            <div className={s['header']}>MERN CLOUD</div>
+          </NavLink>
         </div>
         <div className={s['column']}>
           {!isAuth ? (
