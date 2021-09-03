@@ -1,4 +1,4 @@
-import {$instance} from "./instance";
+import {$instance, $instanceWithToken} from "./instance";
 
 export const authAPI = {
     registration: (email, password) => {
@@ -12,5 +12,9 @@ export const authAPI = {
             email,
             password
         });
+    },
+
+    checkIsAuth: () => {
+        return $instanceWithToken.get('auth');
     }
 }

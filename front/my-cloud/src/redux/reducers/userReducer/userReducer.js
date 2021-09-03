@@ -73,3 +73,25 @@ export const logout = () =>  (dispatch) => {
   dispatch(setIsAuth(false));
   dispatch(saveUser(null));
 };
+
+export const checkIsAuth = () =>  async (dispatch) => {
+  try {
+    const response = await authAPI.checkIsAuth();
+    const { user, message, token } = response.data;
+
+    dispatch(saveUser(user));
+    dispatch(setIsAuth(true));
+    LS.set('cloudToken', token);
+
+    console.log(message);
+  } catch(e) {
+    dispatch(setIsAuth(false));
+    if (!e.response.data.message) {
+      console.error(e.message);
+      return;
+    }
+    console.error(e.response.data.message);
+  }
+};
+
+
