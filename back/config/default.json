@@ -1,5 +1,6 @@
 {
   "serverPort": 5000,
   "password": "cloudDrive",
-  "secret": "my-cloud-secret"
+  "secret": "my-cloud-secret",
+  "fileStoragePath": "C:/Users/istore/Desktop/WebDev/MyCloud/back/filesStorage"
 }

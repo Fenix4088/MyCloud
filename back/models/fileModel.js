@@ -9,7 +9,7 @@ const File = new Schema({
     path: {type: String, default: ''},
     user: {type: ObjectId, ref: 'User'},
     parent: {type: ObjectId, ref: 'File'},
-    childs: [{type: ObjectId, ref: 'File'}]
+    children: [{type: ObjectId, ref: 'File'}]
 });
 
 module.exports = model('File', File);
