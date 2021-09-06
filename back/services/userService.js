@@ -7,6 +7,7 @@ class UserService {
     const hashPassword = await bcrypt.hash(password, 15);
     const newUser = await userModel.create({ email, password: hashPassword });
     await newUser.save();
+    return newUser;
   }
 
   async findUserBy(payload) {

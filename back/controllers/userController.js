@@ -4,10 +4,13 @@ const AuthService = require('../services/authService.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const fileService = require('../services/fileService.js');
+const fileModel = require('../models/fileModel.js');
 
 class UserController {
   async create(req, res) {
     try {
+      // debugger;
       const errors = validationResult(req);
       if (!errors.isEmpty()) return res.status(400).json({ message: 'Incorrect request', errors });
 
@@ -17,7 +20,9 @@ class UserController {
 
       if (candidate) return res.status(400).json({ message: `User ${email} already exist` });
 
-      await UserService.create({ email, password });
+      const user = await UserService.create({ email, password });
+
+      await fileService.create(new fileModel({ user: user.id, name: ''}));
 
       return res.status(200).json({ message: `User created ${email}` });
     } catch (e) {
