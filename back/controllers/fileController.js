@@ -12,10 +12,10 @@ class FileController {
 
       if (!parentFile) {
         file.path = name;
-        await fileService.create(file);
+        await fileService.createDir(file);
       } else {
         file.path = `${parentFile.path}/${file.name}`;
-        await fileService.create(file);
+        await fileService.createDir(file);
         parentFile.children.push(file._id);
         await parentFile.save();
       }

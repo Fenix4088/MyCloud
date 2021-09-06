@@ -4,8 +4,8 @@ const AuthService = require('../services/authService.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const fileService = require('../services/fileService.js');
-const fileModel = require('../models/fileModel.js');
+const FileService = require('../services/fileService.js');
+const FileModel = require('../models/fileModel.js');
 
 class UserController {
   async create(req, res) {
@@ -22,7 +22,7 @@ class UserController {
 
       const user = await UserService.create({ email, password });
 
-      await fileService.create(new fileModel({ user: user.id, name: ''}));
+      await FileService.createDir(new FileModel({ user: user.id, name: ''}));
 
       return res.status(200).json({ message: `User created ${email}` });
     } catch (e) {

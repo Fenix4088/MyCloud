@@ -2,7 +2,7 @@ const fs = require('fs');
 const config = require('config');
 
 class FileService {
-    create(file) {
+    createDir(file) {
         const filePath = `${config.get('fileStoragePath')}/${file.user}/${file.path}`;
         // debugger;
         const p = new Promise((res, rej) => {
