@@ -1,5 +1,5 @@
 const fileService = require('../services/fileService.js');
-const File = require('../models/fileModel.js');
+const FileModel = require('../models/fileModel.js');
 const User = require('../models/userModel.js');
 
 class FileController {
@@ -7,8 +7,9 @@ class FileController {
     try {
       const { name, type, parent } = req.body;
       const { id } = req.user;
-      const file = new File({ name, type, parent, user: id });
-      const parentFile = await File.findOne({ _id: parent });
+
+      const file = new FileModel({ name, type, parent, user: id });
+      const parentFile = await FileModel.findOne({ _id: parent });
 
       if (!parentFile) {
         file.path = name;

@@ -10,7 +10,6 @@ const FileModel = require('../models/fileModel.js');
 class UserController {
   async create(req, res) {
     try {
-      // debugger;
       const errors = validationResult(req);
       if (!errors.isEmpty()) return res.status(400).json({ message: 'Incorrect request', errors });
 
