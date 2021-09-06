@@ -27,6 +27,20 @@ class FileController {
       return res.status(500).json(e);
     }
   }
+
+  async getFiles(req, res) {
+    try {
+      const {parent} = req.query;
+      const {id} = req.user;
+
+      const files = await FileModel.find({user: id, parent});
+
+      return res.status(200).json(files);
+
+    } catch(e) {
+      return res.status(500).json(e);
+    }
+  }
 }
 
 module.exports = new FileController();

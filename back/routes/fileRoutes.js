@@ -6,4 +6,6 @@ const router = new Router();
 
 router.post('/create', authMiddleware, (req, res) => FileController.createDir(req, res));
 
+router.get('/get', authMiddleware, (req, res) => FileController.getFiles(req, res));
+
 module.exports = router;
