@@ -1,20 +1,28 @@
-import React, {useEffect} from 'react';
-import s from '../Disk/Disk.module.scss';
+import React, { useEffect } from 'react';
 import { withRedirect } from '../../hoc/withRedirect';
-import {useDispatch, useSelector} from "react-redux";
-import {fetchFiles, fileReducer} from "../../redux/reducers/fileReducer/fileReducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchFiles } from '../../redux/reducers/fileReducer/fileReducer';
+
+import s from './Disk.module.scss';
+import {FileList} from "./FileList/FileList";
 
 const Disk = () => {
   const dispatch = useDispatch();
-  const currentDir = useSelector(state => state.fileReducer.currentDir);
+  const currentDir = useSelector((state) => state.fileReducer.currentDir);
 
   useEffect(() => {
-    dispatch(fetchFiles(currentDir))
-  }, [currentDir])
+    dispatch(fetchFiles(currentDir));
+  }, [currentDir]);
 
-  return <div>
-    <h1>DISK</h1>
-  </div>;
+  return (
+    <div className={s['container']}>
+      <div className={s['button-group']}>
+        <button>Back</button>
+        <button>Create folder</button>
+      </div>
+      <FileList/>
+    </div>
+  );
 };
 
 export default withRedirect(Disk, false);
