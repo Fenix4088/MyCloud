@@ -32,6 +32,7 @@ export const fileReducer = (state = initialState, action) => {
       return state;
   }
 };
+console.log('')
 
 const setFiles = (files) => {
   return {
