@@ -1,0 +1,72 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(86, 104, 133, .5);
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
+
+.formWrapper {
+  position: relative;
+  z-index: 20;
+}
+
+.form {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 40%;
+  padding: 25px 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  background: #FFFFFF;
+  border-radius: 27px;
+  transform: translate(-50%, 50%);
+
+  & > h2 {
+    margin-bottom: 20px;
+  }
+
+  & > input {
+    margin-bottom: 25px;
+    width: 80%;
+    padding: 5px;
+    border-top: unset;
+    border-left: unset;
+    border-right: unset;
+    border-bottom: 3px solid #566885;
+    color: rgb(86, 104, 133);
+
+    &::placeholder {
+      color: rgba(86, 104, 133, 0.6);
+    }
+
+    &, &::placeholder {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+
+    }
+  }
+
+  & > button {
+    padding: 10px 25px;
+    font-size: 16px;
+    color: #fff;
+    border: unset;
+    background: #566885;
+    border-radius: 12px;
+  }
+
+  & > button[type='button'] {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}

@@ -62,7 +62,7 @@ class UserController {
   async checkIsAuth(req, res) {
     try {
       const { id } = req.user;
-      const user = await UserService.findUserBy({ id });
+      const user = await UserService.findUserBy({ _id: id });
 
       if (!user) return res.status(404).json({ message: 'User not found' });
 

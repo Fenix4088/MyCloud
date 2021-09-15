@@ -5,7 +5,6 @@ const User = require('../models/userModel.js');
 class FileController {
   async createDir(req, res) {
     try {
-      debugger;
       const { name, type, parent } = req.body;
       const { id } = req.user;
 

@@ -29,9 +29,9 @@ export const File = ({ filePayload }) => {
         <div className={s['control-btn']}>
           <img src={shareImg} alt='img' />
         </div>
-        <div className={s['control-btn']}>
+        {type === 'file' && <div className={s['control-btn']}>
           <img src={downloadImg} alt='img' />
-        </div>
+        </div>}
         <div className={s['control-btn']}>
           <img src={trashImg} alt='img' />
         </div>
