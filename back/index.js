@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes.js');
 const fileRoutes = require('./routes/fileRoutes.js');
 const cors = require('cors');
 
+
 const PORT = config.get('serverPort');
 const DB = `mongodb+srv://cloudDrive:${config.get("password")}@cluster0.jypji.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
@@ -15,6 +16,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(upload.array());
+// app.use(express.static('public'));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/file', fileRoutes);
