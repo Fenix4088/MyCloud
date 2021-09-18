@@ -5,16 +5,19 @@ const actionTypes = {
   SET_CURRENT_DIR: 'SET_CURRENT_DIR/fileReducer',
   TOGGLE_POPUP: 'TOGGLE_POPUP/fileReducer',
   CREATE_FOLDER: 'CREATE_FOLDER/fileReducer',
+  PUT_TO_STACK: 'PUT_TO_STACK/fileReducer',
+  REMOVE_FROM_STACK: 'REMOVE_FROM_STACK/fileReducer',
 };
 
 const initialState = {
   files: [],
   currentDir: null,
   isPopupVisible: false,
+  dirStack: [],
 };
 
 export const fileReducer = (state = initialState, action) => {
-  const { SET_FILES, SET_CURRENT_DIR, TOGGLE_POPUP, CREATE_FOLDER } = actionTypes;
+  const { SET_FILES, SET_CURRENT_DIR, TOGGLE_POPUP, CREATE_FOLDER, PUT_TO_STACK, REMOVE_FROM_STACK } = actionTypes;
   switch (action.type) {
     case SET_FILES: {
       return { ...state, files: action.payload };
@@ -28,6 +31,12 @@ export const fileReducer = (state = initialState, action) => {
     case CREATE_FOLDER: {
       return { ...state, files: [...state.files, action.file] };
     }
+    case PUT_TO_STACK: {
+      return { ...state, dirStack: [...state.dirStack, action.dir]};
+    }
+    case REMOVE_FROM_STACK: {
+      return { ...state, dirStack: action.dirStack};
+    }
     default:
       return state;
   }
@@ -40,7 +49,7 @@ const setFiles = (files) => {
   };
 };
 
-const setCurrentDir = (dir) => {
+export const setCurrentDir = (dir) => {
   return {
     type: actionTypes.SET_CURRENT_DIR,
     payload: dir,
@@ -58,6 +67,20 @@ export const createNewFolder = (file) => {
   return {
     type: actionTypes.CREATE_FOLDER,
     file
+  }
+}
+
+export const putToStack = (dir) => {
+  return {
+    type: actionTypes.PUT_TO_STACK,
+    dir
+  }
+}
+
+export const removeFromStack = (dirStack) => {
+  return {
+    type: actionTypes.REMOVE_FROM_STACK,
+    dirStack
   }
 }
 
